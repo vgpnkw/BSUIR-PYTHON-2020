@@ -78,20 +78,6 @@ def word_count(arg_ans, arg_file):
     print("Топ повторяющихся слов :", top_word)
 
 
-def rebuild_array(temp_array):
-    input_array = []
-    temp = ""
-    temp_array += " "
-    for i in temp_array:
-        temp += i
-        if i == " ":
-            input_array.append(int(temp))
-            temp = ""
-    print(input_array)
-    del temp
-    del temp_array
-    return input_array
-
 
 def quick_sort(arg_ans, arg_file):
     print("Задача 2")
@@ -196,12 +182,14 @@ def merge_sort(arg_ans, arg_file):
             chooser = input("Вы ввели не то")
 
         if chooser == "1":
-            with open("quick_sort_3.txt") as file_1:
+            with open("task_2_3.txt") as file_1:
                 input_ar = file_1.read()
         elif chooser == "2":
             input_ar = list(input("Введите строку"))
 
-    input_ar = rebuild_array(input_ar)
+    input_ar = list(input_ar.split())
+
+    print(input_ar)
 
     merge(input_ar)
 
