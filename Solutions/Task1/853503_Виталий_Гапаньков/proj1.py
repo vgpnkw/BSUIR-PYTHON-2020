@@ -109,7 +109,9 @@ elif args.solveB:
 
     print('\n' + randNumb)
     intRandNumb = [int(N) for N in randNumb.split()]
-    print(quick_sort(intRandNumb,0,len(intRandNumb)-1))
+    quick_sort(intRandNumb, 0, len(intRandNumb)-1)
+    for i in range(len(intRandNumb)):
+        print(intRandNumb[i], end=" ")
     numb = merge_sort(intRandNumb)
     print(numb)
 
