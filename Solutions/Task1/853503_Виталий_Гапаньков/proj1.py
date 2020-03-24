@@ -35,16 +35,20 @@ def fibanachi(n):
         yield fib1
 
 
-def quick_sort(nums):
-    if len(nums) <= 1:
-        return nums
-    else:
-        q = random.choice(nums)
-    l_nums = [n for n in nums if n < q]
+def quick_sort(nums, fst, lst):
+    if fst >= lst: return
 
-    e_nums = [q] * nums.count(q)
-    b_nums = [n for n in nums if n > q]
-    return quick_sort(l_nums) + e_nums + quick_sort(b_nums)
+    i, j = fst, lst
+    pivot = nums[random.randint(fst, lst)]
+
+    while i <= j:
+        while nums[i] < pivot: i += 1
+        while nums[j] > pivot: j -= 1
+        if i <= j:
+            nums[i], nums[j] = nums[j], nums[i]
+            i, j = i + 1, j - 1
+    quick_sort(nums, fst, j)
+    quick_sort(nums, i, lst)
 
 
 def merge(left_list, right_list):
@@ -105,7 +109,7 @@ elif args.solveB:
 
     print('\n' + randNumb)
     intRandNumb = [int(N) for N in randNumb.split()]
-    print(quick_sort(intRandNumb))
+    print(quick_sort(intRandNumb,0,len(intRandNumb)-1))
     numb = merge_sort(intRandNumb)
     print(numb)
 
