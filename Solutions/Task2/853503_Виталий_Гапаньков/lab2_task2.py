@@ -7,8 +7,7 @@ class Json:
             return self.to_json_str_bool_None_int_float(obj)
         elif isinstance(obj, dict):
             return self.to_json_dict(obj)
-        elif isinstance(obj, (int, str, bool, type(None), float)):
-            return self.to_json_str_bool_None_int_float(obj)
+
 
     def to_json_list_tuple(self, obj):
         data = []
@@ -19,8 +18,8 @@ class Json:
                 data.append(self.to_json_list_tuple(arg))
             if isinstance(arg, dict):
                 data.append(self.to_json_dict(arg))
-        string = ', \n'.join(data)
-        return '[\n' + string + '\n]'
+        string = ', '.join(data)
+        return '[' + string + ']'
 
     def to_json_str_bool_None_int_float(self, obj):
         if isinstance(obj, bool):
@@ -32,11 +31,7 @@ class Json:
             return '{}'.format(obj)
         elif isinstance(obj, str):
             return '"{}"'.format(obj)
-        elif isinstance(obj, bool):
-            if obj:
-                return 'true'
-            else:
-                return 'false'
+
         elif isinstance(obj, type(None)):
             return 'null'
 
@@ -49,8 +44,8 @@ class Json:
                 data.append(self.to_json_record(key, self.to_json_list_tuple(value)))
             if isinstance(value, dict):
                 data.append(self.to_json_record(key, self.to_json_dict(value)))
-        string = ',\n'.join(data)
-        return '{\n' + string + '\n}'
+        string = ', '.join(data)
+        return '{' + string + '}'
     def to_json_record(self, key, value):
         return f'"{key}": {value}'
 
